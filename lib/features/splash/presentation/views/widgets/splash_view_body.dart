@@ -1,5 +1,5 @@
-import 'package:bookly/constans.dart';
 import 'package:bookly/core/utils/assets.dart';
+import 'package:bookly/features/splash/presentation/views/widgets/animated_slider_widget.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -10,20 +10,38 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController animationController;
-  late Animation slidingAnimation;
+  late Animation<Offset> slidingAnimation;
+  late Animation<Offset> slidingAnimation2;
+  late Animation<Offset> slidingAnimation3;
 
   @override
   void initState() {
     super.initState();
     animationController = AnimationController(
-        vsync: this,
-        duration: const Duration(
-          minutes: 1,
-        ),);
-  }
+      vsync: this,
+      duration: const Duration(
+        seconds: 3,
+      ),
+    );
 
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(-7, 0), end: Offset.zero)
+            .animate(animationController);
+    slidingAnimation2 =
+        Tween<Offset>(begin: const Offset(0, 4), end: Offset.zero)
+            .animate(animationController);
+    slidingAnimation3 =
+        Tween<Offset>(begin: const Offset(7, 0), end: Offset.zero)
+            .animate(animationController);
+    animationController.forward();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,10 +52,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
         const SizedBox(
           height: 5,
         ),
-        const Text(
-          'Read free Books',
-          textAlign: TextAlign.center,
-        )
+        SlidingWidget(
+            slidingAnimation: slidingAnimation,
+            slidingAnimation2: slidingAnimation2,
+            slidingAnimation3: slidingAnimation3),
       ],
     );
   }
