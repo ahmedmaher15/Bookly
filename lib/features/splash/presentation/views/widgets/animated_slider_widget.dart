@@ -24,13 +24,13 @@ class SlidingWidget extends StatelessWidget {
               SlideTransition(
                 position: slidingAnimation,
                 child: const Text(
-                  'Read ',
+                  'Read  ',
                   textAlign: TextAlign.center,
                 ),
               ), SlideTransition(
                 position: slidingAnimation2,
                 child: const Text(
-                  'free',
+                  'free ',
                   textAlign: TextAlign.center,
                 ),
               ),
