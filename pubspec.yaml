@@ -17,6 +17,7 @@ dependencies:
 
   #api
   dartz: ^0.10.1
+  dio: ^5.4.1
   #get: ^4.6.6
 dev_dependencies:
   flutter_test:
