@@ -40,6 +40,7 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverFillRemaining(
+          fillOverscroll: false,
           child: BestListViewItem(),
         )
       ],
