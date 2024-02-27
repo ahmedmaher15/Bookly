@@ -2,7 +2,7 @@ import 'package:bookly/features/home/data/models/book_model/access_info.dart';
 import 'package:bookly/features/home/data/models/book_model/sale_info.dart';
 import 'package:bookly/features/home/data/models/book_model/search_info.dart';
 import 'package:bookly/features/home/data/models/book_model/volume_info.dart';
-import 'package:bookly/features/home/domain/entites/book_entite.dart';
+import 'package:bookly/features/home/domain/entites/book_entity.dart';
 
 class BookModel extends BookEntity {
   BookModel({

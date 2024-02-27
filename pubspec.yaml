@@ -18,12 +18,15 @@ dependencies:
   #api
   dartz: ^0.10.1
   dio: ^5.4.1
+  #local_data
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   #get: ^4.6.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
   flutter_lints: ^2.0.0
 
 flutter:
