@@ -7,7 +7,7 @@ class ServerFailure extends Failure {
 
   ServerFailure({required this.message});
 
-  factory ServerFailure.fromDioError(DioError e) {
+  factory ServerFailure.fromDioError(DioException e) {
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure(message: 'Connection timeout with api server');
@@ -22,7 +22,8 @@ class ServerFailure extends Failure {
         return ServerFailure(message: 'BadCertificate  with api server');
 
       case DioExceptionType.badResponse:
-        return ServerFailure(message: 'BadResponse  with api server');
+        return ServerFailure.fromResponse(
+            e.response!.statusCode!, e.response!.data);
 
       case DioExceptionType.cancel:
         return ServerFailure(message: 'Request to  ApiServer was Canceled');
@@ -32,6 +33,21 @@ class ServerFailure extends Failure {
         return ServerFailure(
             message: 'Opps There was an error, Please try again');
     }
+  }
+
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    if (statusCode == 404) {
+      return ServerFailure(
+          message: 'Your request was noy found, please try latter');
+    } else if (statusCode == 500) {
+      return ServerFailure(
+          message: 'There is a problem with server, please try latter');
+    }
+    else if (statusCode == 400 ||statusCode == 401||statusCode == 403) {
+      return ServerFailure(message: response['error']['message']);
+    }
+    return ServerFailure(
+        message: 'There was an error, Please try again');
   }
 }
 
