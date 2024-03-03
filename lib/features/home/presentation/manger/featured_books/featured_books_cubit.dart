@@ -17,7 +17,9 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   result.fold((failure) => {
     emit(FeaturedBooksFailure(errorMessage: failure.message))
   }, (books) => {
-    emit(FeaturedBooksSuccess(books: books))
+    print('asdflknmgfldknmsdfgv${books[0].title}'),
+    emit(FeaturedBooksSuccess(books: books)),
+    print('sadfglkbjnsdf ${books[0].image}')
   });
   }
 }

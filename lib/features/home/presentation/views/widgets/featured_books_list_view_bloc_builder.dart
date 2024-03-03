@@ -15,7 +15,9 @@ class FeatureBooksListViewBlocBuilder extends StatelessWidget {
 
         builder: (context,state) {
           if (state is FeaturedBooksSuccess) {
-            return const FeatureBooksListView();
+            print('sdlf;knmsdf ${state.books.length}');
+            print('sdlf;knmsdf ${state.books[0].image}');
+            return  FeatureBooksListView(books: state.books,);
           }else if(state is FeaturedBooksFailure){
             return Text(state.errorMessage);
           }else{

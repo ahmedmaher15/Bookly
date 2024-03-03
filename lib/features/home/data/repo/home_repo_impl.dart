@@ -17,10 +17,11 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async {
     try {
       List<BookEntity> books;
-      books = homeLocalDataSource.fetchFeaturedBooks();
+    /*  books = homeLocalDataSource.fetchFeaturedBooks();
       if (books.isNotEmpty) {
+        print('sdlfknklsfn${books[0].image}');
         return right(books);
-      }
+      }*/
       books = await homeRemoteDataSource.fetchFeaturedBooks();
       return right(books);
     } catch (e) {

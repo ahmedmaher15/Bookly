@@ -17,12 +17,12 @@ class BookEntityAdapter extends TypeAdapter<BookEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return BookEntity(
-      bookId: fields[0] as String?,
-      image: fields[1] as String?,
-      title: fields[2] as String?,
-      authorName: fields[3] as String?,
-      price: fields[4] as num?,
-      ratting: fields[5] as num?,
+      bookId: fields[0] ,
+      image: fields[1] ,
+      title: fields[2] ,
+      authorName: fields[3] ,
+      price: fields[4] ,
+      ratting: fields[5] ,
     );
   }
 

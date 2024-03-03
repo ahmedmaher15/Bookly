@@ -16,22 +16,22 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() async {
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
     var data = await apiService.get(
-        endPoint: 'volumes?Filtering=free-ebooks&q=programming');
+        endPoint:
+        'volumes?Filtering=free-ebooks&q=programming');
     List<BookEntity> books = getBooksList(data);
-    saveBooksData(books,kFeaturedBox);
+    saveBooksData(books, kFeaturedBox);
+    print('sdfasdoknf${data['items'][0]['volumeInfo']['imageLinks']['thumbnail']}');
     return books;
   }
-
-
 
   @override
   Future<List<BookEntity>> fetchNewestBooks() async {
     var data = await apiService.get(
         endPoint: 'volumes?Filtering=free-ebooks&q=programming&Sorting=newest');
     List<BookEntity> books = getBooksList(data);
-    saveBooksData(books,kNewestBox);
+    saveBooksData(books, kNewestBox);
     return books;
   }
 
@@ -39,7 +39,9 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     List<BookEntity> books = [];
     for (var bookMap in data['items']) {
       books.add(BookModel.fromJson(bookMap));
+      print('asdgfsdfagsdf${BookModel.fromJson(bookMap).id}');
     }
+    print('asdgfsdfagsdf${books[0].title}');
     return books;
   }
 }
