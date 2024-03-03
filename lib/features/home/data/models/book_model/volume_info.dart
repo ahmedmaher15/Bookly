@@ -50,7 +50,7 @@ class VolumeInfo {
     canonicalVolumeLink = json['canonicalVolumeLink'];
   }
   String? title;
-  List<String>? authors;
+  List<dynamic>? authors;
   String? publisher;
   String? publishedDate;
   String? description;
