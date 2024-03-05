@@ -1,16 +1,13 @@
 class Epub {
-  Epub({
-      this.isAvailable,});
-
-  Epub.fromJson(dynamic json) {
-    isAvailable = json['isAvailable'];
-  }
   bool? isAvailable;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['isAvailable'] = isAvailable;
-    return map;
-  }
+  Epub({this.isAvailable});
 
+  factory Epub.fromJson(Map<String, dynamic> json) => Epub(
+        isAvailable: json['isAvailable'] as bool?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'isAvailable': isAvailable,
+      };
 }

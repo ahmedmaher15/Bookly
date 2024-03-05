@@ -17,12 +17,12 @@ class BookEntityAdapter extends TypeAdapter<BookEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return BookEntity(
-      bookId: fields[0] ,
-      image: fields[1] ,
-      title: fields[2] ,
-      authorName: fields[3] ,
-      price: fields[4] ,
-      ratting: fields[5] ,
+      image: fields[1] as String?,
+      title: fields[2] as String?,
+      authorName: fields[3] as String?,
+      price: fields[4] as num?,
+      rating: fields[5] as num?,
+      bookId: fields[0] as String?,
     );
   }
 
@@ -41,7 +41,7 @@ class BookEntityAdapter extends TypeAdapter<BookEntity> {
       ..writeByte(4)
       ..write(obj.price)
       ..writeByte(5)
-      ..write(obj.ratting);
+      ..write(obj.rating);
   }
 
   @override
@@ -50,7 +50,7 @@ class BookEntityAdapter extends TypeAdapter<BookEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is BookEntityAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+          other is BookEntityAdapter &&
+              runtimeType == other.runtimeType &&
+              typeId == other.typeId;
 }

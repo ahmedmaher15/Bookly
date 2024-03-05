@@ -1,16 +1,13 @@
 class Pdf {
-  Pdf({
-      this.isAvailable,});
-
-  Pdf.fromJson(dynamic json) {
-    isAvailable = json['isAvailable'];
-  }
   bool? isAvailable;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['isAvailable'] = isAvailable;
-    return map;
-  }
+  Pdf({this.isAvailable});
 
+  factory Pdf.fromJson(Map<String, dynamic> json) => Pdf(
+        isAvailable: json['isAvailable'] as bool?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'isAvailable': isAvailable,
+      };
 }
