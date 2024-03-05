@@ -20,11 +20,9 @@ void main() async {
   await Hive.openBox<BookEntity>(kFeaturedBox);
   setupServiceLocator();
   await Hive.openBox<BookEntity>(kNewestBox);
-  Bloc.observer=SimpleBlocObserver();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const BooklyApp());
 }
-
-
 
 class BooklyApp extends StatelessWidget {
   const BooklyApp({super.key});
