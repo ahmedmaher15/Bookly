@@ -15,29 +15,36 @@ class FeatureBooksListView extends StatefulWidget {
 }
 
 class _FeatureBooksListViewState extends State<FeatureBooksListView> {
- late final ScrollController _scrollController;
+  late final ScrollController _scrollController;
+  var nextPage = 1;
+  var isLoading=false;
 
   @override
   void initState() {
-
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
   }
 
-  void _scrollListener() {
-    var maxScrollLength=_scrollController.position.maxScrollExtent;
+  void _scrollListener() async{
+    var maxScrollLength = _scrollController.position.maxScrollExtent;
     var currentPosition = _scrollController.position.pixels;
     if (currentPosition >= 0.7 * maxScrollLength) {
-      BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks();
+      if(!isLoading){
+        isLoading=true;
+      await  BlocProvider.of<FeaturedBooksCubit>(context)
+            .fetchFeaturedBooks(pageNumber: nextPage++);
+        isLoading=false;
+      }
     }
   }
-@override
+
+  @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _scrollController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
