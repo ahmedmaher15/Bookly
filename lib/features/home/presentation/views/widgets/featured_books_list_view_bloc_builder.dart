@@ -20,14 +20,11 @@ class _FeatureBooksListViewBlocConsumerState
     extends State<FeatureBooksListViewBlocConsumer> {
   List<BookEntity> books = [];
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
         listener: (context, state) {
       if (state is FeaturedBooksSuccess) {
-
         books.addAll(state.books);
       }
       if (state is FeaturedBooksPaginationFailure) {

@@ -44,7 +44,7 @@ class SaleInfo {
 }
 
 class ListPrice {
-  double? amount;
+  num? amount;
   String? currencyCode;
 
   ListPrice({this.amount, this.currencyCode});
