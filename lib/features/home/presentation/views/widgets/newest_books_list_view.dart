@@ -1,8 +1,6 @@
 import 'package:bookly/features/home/domain/entites/book_entity.dart';
-import 'package:bookly/features/home/presentation/manger/newest_books/newest_books_cubit.dart';
 import 'package:bookly/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewestBooksListView extends StatefulWidget {
   const NewestBooksListView({super.key, required this.books});
