@@ -1,4 +1,5 @@
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/domain/entites/book_entity.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_action.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'custom_book_item.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.bookData});
+
+  final BookEntity bookData;
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +21,16 @@ class BookDetailsSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: width * .2,
           ),
-          child: const CustomBookImage(image: '',
-
+          child: CustomBookImage(
+            image: bookData.image ?? '',
           ),
         ),
         const SizedBox(
           height: 43,
         ),
         Text(
-          'The Jungle Book',
-          style: Styles.textStyle30.copyWith(
+          bookData.title ?? 'The Jungle Book',
+          style: Styles.textStyle25.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -37,7 +40,7 @@ class BookDetailsSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
-            'Rudyard Kipling',
+            bookData.authorName ?? 'Rudyard Kipling',
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
@@ -47,13 +50,16 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 18,
         ),
-        const BookRating(
+        BookRating(
           mainAxisAlignment: MainAxisAlignment.center,
+          ratting: bookData.rating != null ? '${bookData.rating}' : '5',
         ),
         const SizedBox(
           height: 37,
         ),
-        const BooksAction(),
+        BooksAction(
+          price: bookData.price != null ? '${bookData.price}' : '0',
+        ),
       ],
     );
   }

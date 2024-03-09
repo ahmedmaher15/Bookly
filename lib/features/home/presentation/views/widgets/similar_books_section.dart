@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 
 class SimilarBooksSection extends StatelessWidget {
-  const SimilarBooksSection({super.key});
-
+  const SimilarBooksSection({super.key, required this.image});
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +20,7 @@ class SimilarBooksSection extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const SimilarBooksListview(),
+         SimilarBooksListview(image: image,),
       ],
     );
   }
