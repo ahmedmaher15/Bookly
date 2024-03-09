@@ -21,33 +21,28 @@ class _NewestBooksListViewBlocConsumerState
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return BlocConsumer<NewestBooksCubit, NewestBooksState>(
-                  listener: (context, state) {
-                    if (state is NewestBooksSuccess) {
-                      books.addAll(state.books);
-                    }
-                    if (state is NewestBooksFailure) {
-                      showSnackBar(context, state.errorMessage);
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is NewestBooksSuccess ||
-                        state is NewestBooksPaginationLoading ||
-                        state is NewestBooksPaginationFailure) {
-                      return NewestBooksListView(
-                        books: books,
-                      );
-                    } else if (state is NewestBooksFailure) {
-                      return Text(state.errorMessage);
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  },
-                );
-            },
-            childCount: 1));
+    return BlocConsumer<NewestBooksCubit, NewestBooksState>(
+      listener: (context, state) {
+        if (state is NewestBooksSuccess) {
+          books.addAll(state.books);
+        }
+        if (state is NewestBooksFailure) {
+          showSnackBar(context, state.errorMessage);
+        }
+      },
+      builder: (context, state) {
+        if (state is NewestBooksSuccess ||
+            state is NewestBooksPaginationLoading ||
+            state is NewestBooksPaginationFailure) {
+          return NewestBooksListView(
+            books: books,
+          );
+        } else if (state is NewestBooksFailure) {
+          return Text(state.errorMessage);
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
   }
 }

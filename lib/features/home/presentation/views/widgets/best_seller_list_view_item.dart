@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key, required this.bookEntity});
-  final BookEntity bookEntity;
+  const BookListViewItem({super.key, required this.books});
+  final BookEntity books;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,7 +28,7 @@ class BookListViewItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: CachedNetworkImage(
                   fit: BoxFit.fill,
-                  imageUrl: bookEntity.image??'',
+                  imageUrl: books.image??'',
                 ),
               ),
             ),
@@ -42,19 +42,22 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                       width: MediaQuery.of(context).size.width * .5,
                       child:  Text(
-                        bookEntity.title??'No title',
+                        books.title??'No title',
                         style: Styles.textStyle20.copyWith(    fontFamily: kGtSectraFine,),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       )),
                   const SizedBox(height: 3,),
-                   Text(bookEntity.authorName??'no author Name',style: Styles.textStyle14,),
+                   SizedBox(
+                       width: MediaQuery.of(context).size.width * .5,
+                       child: Text(books.authorName??'no author Name',style: Styles.textStyle14,  maxLines: 1,
+                         overflow: TextOverflow.ellipsis,)),
                   const SizedBox(height: 3,),
                   Row(
                     children: [
-                      Text('${bookEntity.price==null?0.0 :bookEntity.price} \$',style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold,),),
+                      Text('${books.price==null?0.0 :books.price} \$',style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold,),),
                       const Spacer(),
-                      const BookRatting()
+                       BookRatting(rate: books.rating??5, )
                     ],
                   )
                 ],

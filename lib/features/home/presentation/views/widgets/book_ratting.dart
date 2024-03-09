@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BookRatting extends StatelessWidget {
-  const BookRatting({super.key});
+  const BookRatting({super.key, required this.rate});
+  final num rate;
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,8 @@ class BookRatting extends StatelessWidget {
         const SizedBox(
           width: 6.3,
         ),
-        const Text(
-          '4.8',
+         Text(
+          rate.toString(),
           style: Styles.textStyle16,
         ),
         const SizedBox(
